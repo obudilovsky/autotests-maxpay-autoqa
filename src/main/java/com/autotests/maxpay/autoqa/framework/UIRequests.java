@@ -15,12 +15,13 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfElem
 
 public class UIRequests extends SetUp {
 
-    public static void typeLoginEmailInput(String email, String password) {
+    public static void typeLoginEmailInput(String email, String password) throws InterruptedException  {
         WebDriverWait wait = new WebDriverWait(driver, 0);
         wait.until(visibilityOfElementLocated(By.id(LOGIN_EMAIL_INPUT_PATH)));
         driver.findElement(By.id(LOGIN_EMAIL_INPUT_PATH)).sendKeys(email);
         driver.findElement(By.id(LOGIN_PASSWORD_INPUT_PATH)).sendKeys(password);
         driver.findElement(By.xpath(LOGIN_BUTTON_XPATH)).isDisplayed();
         driver.findElement(By.xpath(LOGIN_BUTTON_XPATH)).click();
+        Thread.sleep(2000);
     }
 }

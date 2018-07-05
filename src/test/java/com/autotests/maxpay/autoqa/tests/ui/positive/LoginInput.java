@@ -4,6 +4,7 @@ package com.autotests.maxpay.autoqa.tests.ui.positive;
  * Created by o.budilovsky on 04.07.2018.
  */
 
+import com.autotests.maxpay.autoqa.framework.SetUp;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
@@ -22,9 +23,9 @@ import static com.autotests.maxpay.autoqa.framework.UIPathConstants.*;
 import static com.autotests.maxpay.autoqa.framework.UIRequests.typeLoginEmailInput;
 import static org.openqa.selenium.support.ui.ExpectedConditions.invisibilityOfElementLocated;
 
-public class LoginInput {
+public class LoginInput extends SetUp {
 
-    @Test (groups = { "UI" })
+    @Test (groups = "UI")
     public void checkStatusCode() throws IOException {
         HttpClient client = HttpClientBuilder.create().build();
         HttpGet request = new HttpGet(driver.getCurrentUrl());
@@ -36,7 +37,7 @@ public class LoginInput {
         }
     }
 
-    @Test (groups = { "UI" })
+    @Test (groups = "UI")
     public void checkLoginInputValidValues() throws InterruptedException {
         typeLoginEmailInput(VALID_EMAIL, VALID_PASSWORD);
         WebDriverWait wait = new WebDriverWait(driver, 10);

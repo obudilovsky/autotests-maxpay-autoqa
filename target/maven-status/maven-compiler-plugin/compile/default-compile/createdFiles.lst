@@ -1,0 +1,8 @@
+com\autotests\maxpay\autoqa\framework\SetUp.class
+com\autotests\maxpay\autoqa\framework\GetEnvProperties.class
+com\autotests\maxpay\autoqa\framework\APIPathConstants.class
+com\autotests\maxpay\autoqa\framework\TestDataConstants.class
+com\autotests\maxpay\autoqa\framework\UIPathConstants.class
+com\autotests\maxpay\autoqa\framework\APIRequests.class
+com\autotests\maxpay\autoqa\framework\APIRestConstants.class
+com\autotests\maxpay\autoqa\framework\UIRequests.class

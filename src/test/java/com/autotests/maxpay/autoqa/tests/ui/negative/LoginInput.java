@@ -4,6 +4,7 @@ package com.autotests.maxpay.autoqa.tests.ui.negative;
  * Created by o.budilovsky on 04.07.2018.
  */
 
+import com.autotests.maxpay.autoqa.framework.SetUp;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -16,7 +17,7 @@ import static com.autotests.maxpay.autoqa.framework.UIPathConstants.*;
 import static com.autotests.maxpay.autoqa.framework.UIRequests.typeLoginEmailInput;
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfElementLocated;
 
-public class LoginInput {
+public class LoginInput extends SetUp {
 
     private String randomEmail = getRandomEmail();
     private String randomPassword = getRandomPassword();
@@ -24,36 +25,20 @@ public class LoginInput {
     @DataProvider
     public Object[][] testDataValidOnlyEmail() {
         return new Object[][]{
-                {VALID_EMAIL, INPUT_DATA_CYRILLIC},
                 {VALID_EMAIL, INPUT_DATA_EMPTY},
-                {VALID_EMAIL, INPUT_DATA_SPACE},
-                {VALID_EMAIL, INPUT_DATA_SPECIAL_CHARACTERS},
                 {VALID_EMAIL, INPUT_DATA_NEGATIVE_NUMBER},
-                {VALID_EMAIL, INPUT_LONG_STRING},
                 {VALID_EMAIL, INPUT_DATA_HTML},
-                {VALID_EMAIL, INPUT_DATA_XSS},
                 {VALID_EMAIL, INPUT_DATA_SQL},
-                {VALID_EMAIL, INPUT_DATA_CONTROL_CHARACTERS},
-                {VALID_EMAIL, INPUT_DATA_JAVA_KEYWORD},
-                {VALID_EMAIL, INPUT_DATA_COMPLEX_SEQUENCE}
+                {VALID_EMAIL, INPUT_DATA_JAVA_KEYWORD}
         };
     }
 
     @DataProvider
     public Object[][] testDataValidOnlyPassword() {
         return new Object[][]{
-                {INPUT_DATA_CYRILLIC,VALID_PASSWORD},
-                {INPUT_DATA_EMPTY,VALID_PASSWORD}
+                {INPUT_DATA_EMPTY,VALID_PASSWORD},
+                {INPUT_DATA_NEGATIVE_NUMBER,VALID_PASSWORD}
         };
-    }
-
-    // Negative test with random email
-    @Test(groups = { "UI" })
-    public void checkLoginInputRandomLogin() throws InterruptedException  {
-        typeLoginEmailInput(randomEmail, randomPassword);
-        Assert.assertEquals(driver.getTitle(),LOGIN_PAGE_TITLE);
-        driver.findElement(By.id(LOGIN_EMAIL_INPUT_PATH)).sendKeys("");
-        driver.findElement(By.id(LOGIN_PASSWORD_INPUT_PATH)).sendKeys("");
     }
 
     // Negative test with invalid email
@@ -65,6 +50,7 @@ public class LoginInput {
         Assert.assertEquals(driver.getTitle(),LOGIN_PAGE_TITLE);
         driver.findElement(By.id(LOGIN_EMAIL_INPUT_PATH)).clear();
         driver.findElement(By.id(LOGIN_PASSWORD_INPUT_PATH)).clear();
+        Thread.sleep(2000);
     }
 
     // Negative test with invalid password
@@ -76,5 +62,15 @@ public class LoginInput {
         Assert.assertEquals(driver.getTitle(),LOGIN_PAGE_TITLE);
         driver.findElement(By.id(LOGIN_EMAIL_INPUT_PATH)).clear();
         driver.findElement(By.id(LOGIN_PASSWORD_INPUT_PATH)).clear();
+        Thread.sleep(2000);
+    }
+
+    // Negative test with random email
+    @Test(groups = { "UI" })
+    public void checkLoginInputRandomLogin() throws InterruptedException  {
+        typeLoginEmailInput(randomEmail, randomPassword);
+        Assert.assertEquals(driver.getTitle(),LOGIN_PAGE_TITLE);
+        driver.findElement(By.id(LOGIN_EMAIL_INPUT_PATH)).sendKeys("");
+        driver.findElement(By.id(LOGIN_PASSWORD_INPUT_PATH)).sendKeys("");
     }
 }

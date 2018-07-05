@@ -21,7 +21,6 @@ public class TestDataConstants {
         return RandomStringUtils.randomAlphanumeric(12);
     }
 
-    public static final String INPUT_DATA_CYRILLIC = "йцукенгшщФЫВАПР";
     public static final String INPUT_DATA_EMPTY = "";
     public static final String INPUT_DATA_SPACE = " ";
     public static final String INPUT_DATA_SPECIAL_CHARACTERS = "~!@#$%^&*()?_-+{}[]:;\"'<.>,/\\";

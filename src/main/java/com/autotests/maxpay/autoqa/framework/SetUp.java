@@ -22,33 +22,19 @@ public class SetUp {
     public void setUpMethodAPI() {
         baseURI = envProperties.getEnvAddressAPI();
         useRelaxedHTTPSValidation();
-        String testName = getClass().getDeclaredMethods()[0].getName();
-        System.out.println(testName + " started");
-    }
-
-    @AfterGroups(groups = { "API" })
-    public void tearDownMethodAPI() {
-        String testName = getClass().getDeclaredMethods()[0].getName();
-        System.out.println(testName + " ended");
-        System.out.println("");
     }
 
     @BeforeGroups(groups = { "UI" })
-    public void setUpMethodUI() throws InterruptedException{
+    public void setUpMethodUI() {
         baseURI = envProperties.getEnvAddressUI();
         useRelaxedHTTPSValidation();
         driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         driver.get(baseURI);
-        String testName = getClass().getDeclaredMethods()[0].getName();
-        System.out.println(testName + " started");
     }
 
     @AfterGroups(groups = { "UI" })
     public void tearDownMethodUI() {
         if (driver != null) driver.quit();
-        String testName = getClass().getDeclaredMethods()[0].getName();
-        System.out.println(testName + " ended");
-        System.out.println("");
     }
 }

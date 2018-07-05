@@ -1,16 +1,6 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name="all" parallel="false" thread-count="1" verbose="1">
-    <test name="UI" parallel="false" preserve-order="true">
-        <groups>
-            <run>
-                <include name="UI" />
-            </run>
-        </groups>
-        <classes>
-            <class name="com.autotests.maxpay.autoqa.tests.ui.positive.LoginInput"/>
-        </classes>
-    </test>
     <test name="API" parallel="false" preserve-order="true">
         <groups>
             <run>
@@ -21,4 +11,16 @@
             <class name="com.autotests.maxpay.autoqa.tests.api.TestsAPI"/>
         </classes>
     </test>
+    <test name="UI" parallel="false" preserve-order="true">
+        <groups>
+            <run>
+                <include name="UI" />
+            </run>
+        </groups>
+        <classes>
+            <class name="com.autotests.maxpay.autoqa.tests.ui.negative.LoginInput"/>
+            <class name="com.autotests.maxpay.autoqa.tests.ui.positive.LoginInput"/>
+        </classes>
+    </test>
+
 </suite>
