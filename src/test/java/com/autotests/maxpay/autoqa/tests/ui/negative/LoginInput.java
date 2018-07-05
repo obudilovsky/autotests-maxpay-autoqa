@@ -42,7 +42,7 @@ public class LoginInput extends SetUp {
     }
 
     // Negative test with invalid email
-    @Test(groups = { "UI" }, dataProvider = "testDataValidOnlyPassword")
+    @Test(groups = { "UI" }, dataProvider = "testDataValidOnlyPassword", priority = 1)
     public void checkLoginInputValidOnlyPassword(String email, String password) throws InterruptedException  {
         typeLoginEmailInput(email, password);
         WebDriverWait wait = new WebDriverWait(driver, 5);
@@ -54,7 +54,7 @@ public class LoginInput extends SetUp {
     }
 
     // Negative test with invalid password
-    @Test(groups = { "UI" }, dataProvider = "testDataValidOnlyEmail")
+    @Test(groups = { "UI" }, dataProvider = "testDataValidOnlyEmail", priority = 2)
     public void checkLoginInputValidOnlyEmail(String email, String password) throws InterruptedException  {
         typeLoginEmailInput(email, password);
         WebDriverWait wait = new WebDriverWait(driver, 5);
@@ -66,7 +66,7 @@ public class LoginInput extends SetUp {
     }
 
     // Negative test with random email
-    @Test(groups = { "UI" })
+    @Test(groups = { "UI" }, priority = 3)
     public void checkLoginInputRandomLogin() throws InterruptedException  {
         typeLoginEmailInput(randomEmail, randomPassword);
         Assert.assertEquals(driver.getTitle(),LOGIN_PAGE_TITLE);
